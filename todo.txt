@@ -1,0 +1,50 @@
+📌 *p11 - Árbol Recursivo por Plantel*  
+Generar la tabla plantel con los siguientes campos:
+- id_pla → id PK 🏢  
+- nom_pla → nombre del plantel 📝  
+- fec_pla → fecha y hora de creación 🕒  
+
+*Insertar 3 registros iniciales:*  
+
+id_pla | nom_pla
+3      | Plantel Ecatepec
+2      | Plantel Naucalpan  
+6      | Plantel Cuautitlán
+
+
+*Modificaciones a tabla ejecutivo:*  
+Adicionar id_pla (FK con plantel) y generar al menos 5 ejecutivos por plantel.
+
+*Funcionalidad Drag & Drop:*  
+Se debe poder arrastrar y soltar ejecutivos entre planteles realizando UPDATE en su id_pla (FK) y su id_padre (si el cambio es de plantel + nodo padre) 🔄.
+
+*Consulta de citas con relación padre-hijo:*  
+Para corroborar la relación jerárquica, si existe una relación de padre e hijo(s), en citas la consulta se debe realizar de 2 formas:
+1. *Citas del padre* 👤  
+2. *Citas de su árbol* 🌳  
+
+Se necesita un filtro para dicha funcionalidad.
+
+---
+
+📌 *p12 - Subtabla planteles_ejecutivo*  
+Dado que los ejecutivos siempre deben estar asociados a algún plantel, el campo ejecutivo.id_pla resuelve correctamente eso, sin embargo, a los ejecutivos de pronto se les asignan permisos para consultar/editar/eliminar/crear las citas de otros ejecutivos de otros planteles 🔐.
+
+*Estructura de planteles_ejecutivo:*
+- id_pla_eje → id PK  
+- fec_pla_eje → fecha y hora de creación 🕒  
+- id_pla → FK 🏢  
+- id_eje → FK 👤  
+
+*Visualización de permisos:*  
+Dichos permisos muestran una relación entre el ejecutivo y los planteles asociados. Si un ejecutivo tiene asociados 2 planteles debe visualizarse de la siguiente forma usando el emoji (🕋) por cada plantel asociado en la vista de los árboles:
+
+*ejecutivo* 🕋🕋
+
+*Funcionalidad de filtrado:*  
+En la vista de citas, si se tienen planteles asociados debe poder filtrar las citas tanto de:
+- Su cuenta propia 👤  
+- Su árbol 🌳  
+- Las estructuras individuales o recursivas de sus planteles asociados 🕋
+
+Esta funcionalidad permitirá una gestión multi-plantel completa desde una sola interfaz.
