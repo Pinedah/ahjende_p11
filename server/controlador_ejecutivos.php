@@ -217,10 +217,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$id_pla = isset($_POST['id_pla']) && $_POST['id_pla'] !== '' && $_POST['id_pla'] !== 'null' ? escape($_POST['id_pla'], $connection) : null;
 			
 			// Log mejorado para debugging
-			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] MOVER EJECUTIVO - POST data: ' . print_r($_POST, true) . "\n", FILE_APPEND);
-			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] MOVER EJECUTIVO - Procesado: ID=' . $id_eje . ', Padre=' . $id_padre . ', Plantel=' . $id_pla . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] ==============================================' . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] MOVER EJECUTIVO - REQUEST RECIBIDO' . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] POST data completo: ' . print_r($_POST, true) . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] Valores procesados:' . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] - ID Ejecutivo: ' . $id_eje . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] - ID Padre: ' . ($id_padre ? $id_padre : 'NULL') . "\n", FILE_APPEND);
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] - ID Plantel: ' . ($id_pla ? $id_pla : 'NULL') . "\n", FILE_APPEND);
 			
 			if(empty($id_eje)) {
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] ERROR: ID del ejecutivo vacío' . "\n", FILE_APPEND);
 				echo respuestaError('ID del ejecutivo es requerido');
 				break;
 			}
@@ -308,10 +314,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				}
 				
 				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] EJECUTIVO MOVIDO EXITOSAMENTE' . "\n", FILE_APPEND);
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] RESPUESTA ENVIADA: SUCCESS' . "\n", FILE_APPEND);
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] ==============================================' . "\n", FILE_APPEND);
 				echo respuestaExito(null, 'Ejecutivo movido correctamente');
 			} else {
 				$error = mysqli_error($connection);
 				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] ERROR AL MOVER: ' . $error . "\n", FILE_APPEND);
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] RESPUESTA ENVIADA: ERROR' . "\n", FILE_APPEND);
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] ==============================================' . "\n", FILE_APPEND);
 				echo respuestaError('Error al mover ejecutivo: ' . $error);
 			}
 		break;
