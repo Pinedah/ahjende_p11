@@ -1,0 +1,391 @@
+[2025-07-10 21:28:20] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 21:28:20] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 21:28:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 21:28:49] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [id_ejecutivo] => 1
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 21:34:09] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 21:34:09] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 21:34:09] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 21:34:37] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 21:34:37] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 21:34:37] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 21:38:57] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+)
+
+[2025-07-10 21:38:59] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+)
+
+[2025-07-10 21:38:59] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+)
+
+[2025-07-10 21:39:10] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-10 21:39:12] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-10 21:39:13] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 21:39:18] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-07
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 21:39:23] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 21:39:29] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 21:39:32] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 22:07:38] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 22:07:38] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 22:07:38] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:07:46] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 4
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 22:10:55] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 22:10:55] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 22:10:55] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:07] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+)
+
+[2025-07-10 22:11:14] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:16] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+)
+
+[2025-07-10 22:11:19] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 22:11:19] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:21] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:21] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:11:34] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+)
+
+[2025-07-10 22:11:43] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+)
+
+[2025-07-10 22:11:46] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+)
+
+[2025-07-10 22:11:57] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 22:12:32] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 22:12:46] REQUEST recibido: Array
+(
+    [action] => guardar_cita
+    [nom_cit] => Citlaltzinnnnnnn
+    [tel_cit] => 111
+    [cit_cit] => 2025-07-10
+    [hor_cit] => 08:00:00
+)
+
+[2025-07-10 22:12:47] REQUEST recibido: Array
+(
+    [action] => actualizar_cita
+    [campo] => id_eje2
+    [valor] => 12
+    [id_cit] => 70
+)
+
+[2025-07-10 22:12:47] REQUEST recibido: Array
+(
+    [action] => actualizar_cita
+    [campo] => id_cit
+    [valor] => 70
+    [id_cit] => 70
+)
+
+[2025-07-10 22:12:52] REQUEST recibido: Array
+(
+    [action] => actualizar_cita
+    [campo] => hor_cit
+    [valor] => 11:11
+    [id_cit] => 70
+)
+
+[2025-07-10 22:12:53] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 22:13:14] REQUEST recibido: Array
+(
+    [action] => guardar_cita
+    [cit_cit] => 2025-07-10
+    [hor_cit] => 11:11:00
+    [nom_cit] => citlaaaaa
+    [tel_cit] => 000
+)
+
+[2025-07-10 22:13:16] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => true
+)
+
+[2025-07-10 22:13:20] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-10 22:13:26] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:13:37] REQUEST recibido: Array
+(
+    [action] => guardar_cita
+    [id_cit] => 71
+    [id_eje2] => 6
+    [cit_cit] => 2025-07-10
+    [hor_cit] => 09:00:00
+)
+
+[2025-07-10 22:13:37] REQUEST recibido: Array
+(
+    [action] => actualizar_cita
+    [campo] => id_cit
+    [valor] => 72
+    [id_cit] => 72
+)
+
+[2025-07-10 22:13:48] REQUEST recibido: Array
+(
+    [action] => actualizar_cita
+    [campo] => id_eje2
+    [valor] => 6
+    [id_cit] => 71
+)
+
+[2025-07-10 22:13:49] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 22:13:49] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 22:13:50] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+
+[2025-07-10 22:13:55] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+    [id_ejecutivo] => 6
+    [incluir_planteles_asociados] => false
+)
+
+[2025-07-10 22:15:01] REQUEST recibido: Array
+(
+    [action] => obtener_estructura_tabla
+)
+
+[2025-07-10 22:15:01] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos
+)
+
+[2025-07-10 22:15:01] REQUEST recibido: Array
+(
+    [action] => obtener_citas
+    [fecha_filtro] => 2025-07-10
+)
+

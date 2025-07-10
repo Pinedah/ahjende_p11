@@ -119,18 +119,29 @@
                 <!-- Filtro de fecha -->
                 <div class="filter-section">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="fecha-filtro"><strong>Filtro por Fecha:</strong></label>
                             <input type="date" id="fecha-filtro" class="form-control" value="">
                         </div>
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button class="btn btn-info" onclick="cargarCitas()">Filtrar</button>
+                        <div class="col-md-3">
+                            <label for="ejecutivo-filtro"><strong>Ejecutivo:</strong></label>
+                            <select id="ejecutivo-filtro" class="form-control">
+                                <option value="">Todos los ejecutivos</option>
+                            </select>
                         </div>
-                        <!--
-                            <div class="col-md-4 d-flex align-items-end">
-                                <button class="btn btn-success" onclick="agregarNuevaCita()">Agregar Cita</button>
+                        <div class="col-md-3">
+                            <label for="planteles-asociados-filtro"><strong>Incluir Planteles Asociados:</strong></label>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="planteles-asociados-filtro" value="1">
+                                <label class="form-check-label" for="planteles-asociados-filtro">
+                                    🕋 Planteles Asociados
+                                </label>
                             </div>
-                        -->
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button class="btn btn-info mr-2" onclick="cargarCitas()">Filtrar</button>
+                            <button class="btn btn-secondary" onclick="limpiarFiltros()">Limpiar</button>
+                        </div>
                     </div>
                 </div>
 
@@ -339,6 +350,16 @@
                             if (colEjecutivo) {
                                 colEjecutivo.source = ejecutivosDropdown;
                             }
+                            
+                            // Poblar el dropdown del filtro
+                            var selectEjecutivo = $('#ejecutivo-filtro');
+                            selectEjecutivo.empty();
+                            selectEjecutivo.append('<option value="">Todos los ejecutivos</option>');
+                            
+                            ejecutivos.forEach(function(ejecutivo) {
+                                selectEjecutivo.append('<option value="' + ejecutivo.id_eje + '">' + 
+                                    ejecutivo.nom_eje + '</option>');
+                            });
                             
                             console.log('Ejecutivos cargados:', ejecutivos);
                             resolve();
@@ -923,14 +944,23 @@
         function cargarCitas() {
             modoFiltroFecha = true;
             var fecha = $('#fecha-filtro').val();
+            var idEjecutivo = $('#ejecutivo-filtro').val();
+            var incluirPlanteles = $('#planteles-asociados-filtro').is(':checked');
+            
+            var datos = { 
+                action: 'obtener_citas',
+                fecha_filtro: fecha
+            };
+            
+            if (idEjecutivo) {
+                datos.id_ejecutivo = idEjecutivo;
+                datos.incluir_planteles_asociados = incluirPlanteles;
+            }
             
             $.ajax({
                 url: 'server/controlador_citas.php',
                 type: 'POST',
-                data: { 
-                    action: 'obtener_citas',
-                    fecha_filtro: fecha
-                },
+                data: datos,
                 dataType: 'json',
                 success: function(response) {
                     if(response.success) {
@@ -985,6 +1015,13 @@
         
         function limpiarBusqueda() {
             $('#buscador-citas').val('');
+            cargarCitas();
+        }
+        
+        function limpiarFiltros() {
+            $('#fecha-filtro').val('');
+            $('#ejecutivo-filtro').val('');
+            $('#planteles-asociados-filtro').prop('checked', false);
             cargarCitas();
         }
         

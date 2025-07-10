@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		case 'obtener_citas':
 			$fecha_filtro = isset($_POST['fecha_filtro']) ? escape($_POST['fecha_filtro'], $connection) : null;
+			$id_ejecutivo = isset($_POST['id_ejecutivo']) ? intval($_POST['id_ejecutivo']) : null;
+			$incluir_planteles_asociados = isset($_POST['incluir_planteles_asociados']) ? boolval($_POST['incluir_planteles_asociados']) : false;
 			
 			// Obtener todas las columnas de la tabla cita
 			$queryColumnas = "SHOW COLUMNS FROM cita";
@@ -43,19 +45,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$camposSelect[] = 'e.nom_eje';
 			$selectFields = implode(', ', $camposSelect);
 			
+			// Construir la consulta base
+			$whereConditions = ['c.eli_cit = 1'];
+			
 			if ($fecha_filtro) {
-				// Filtro por fecha específica - solo mostrar citas no eliminadas
+				$whereConditions[] = "c.cit_cit = '$fecha_filtro'";
+			}
+			
+			// Si se especifica un ejecutivo y se incluyen planteles asociados
+			if ($id_ejecutivo && $incluir_planteles_asociados) {
+				// Obtener todos los ejecutivos accesibles para este ejecutivo
+				$ejecutivosAccesibles = obtenerEjecutivosAccesibles($id_ejecutivo, $connection);
+				
+				if (!empty($ejecutivosAccesibles)) {
+					$ejecutivosIds = implode(',', $ejecutivosAccesibles);
+					$whereConditions[] = "c.id_eje2 IN ($ejecutivosIds)";
+				} else {
+					// Si no hay ejecutivos accesibles, solo mostrar propias
+					$whereConditions[] = "c.id_eje2 = $id_ejecutivo";
+				}
+			} elseif ($id_ejecutivo) {
+				// Solo filtrar por el ejecutivo especificado
+				$whereConditions[] = "c.id_eje2 = $id_ejecutivo";
+			}
+			
+			$whereClause = implode(' AND ', $whereConditions);
+			
+			if ($fecha_filtro) {
+				// Filtro por fecha específica
 				$query = "SELECT $selectFields 
 						 FROM cita c
 						 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
-						 WHERE c.cit_cit = '$fecha_filtro' AND c.eli_cit = 1
+						 WHERE $whereClause
 						 ORDER BY c.hor_cit ASC";
 			} else {
-				// Todas las citas para búsqueda - solo mostrar citas no eliminadas
+				// Todas las citas para búsqueda
 				$query = "SELECT $selectFields 
 						 FROM cita c
 						 LEFT JOIN ejecutivo e ON c.id_eje2 = e.id_eje
-						 WHERE c.eli_cit = 1
+						 WHERE $whereClause
 						 ORDER BY c.cit_cit DESC, c.hor_cit ASC";
 			}
 
@@ -417,5 +445,88 @@ function obtenerHistorialCita($connection, $id_cit) {
 			  ORDER BY fec_his_cit DESC";
 	
 	return ejecutarConsulta($query, $connection);
+}
+
+// =====================================
+// FUNCIONES DE PLANTELES ASOCIADOS
+// =====================================
+
+function obtenerEjecutivosAccesibles($id_ejecutivo, $connection) {
+	$ejecutivosAccesibles = [];
+	
+	// 1. Incluir al ejecutivo principal
+	$ejecutivosAccesibles[] = $id_ejecutivo;
+	
+	// 2. Obtener ejecutivos de su árbol (hijos recursivos)
+	$hijosArbol = obtenerHijosRecursivos($id_ejecutivo, $connection);
+	$ejecutivosAccesibles = array_merge($ejecutivosAccesibles, $hijosArbol);
+	
+	// 3. Obtener ejecutivos de planteles asociados
+	$ejecutivosPlanteles = obtenerEjecutivosPlanteles($id_ejecutivo, $connection);
+	$ejecutivosAccesibles = array_merge($ejecutivosAccesibles, $ejecutivosPlanteles);
+	
+	// Eliminar duplicados
+	$ejecutivosAccesibles = array_unique($ejecutivosAccesibles);
+	
+	return $ejecutivosAccesibles;
+}
+
+function obtenerHijosRecursivos($id_ejecutivo, $connection, $visitados = []) {
+	$hijos = [];
+	
+	// Evitar recursión infinita
+	if (in_array($id_ejecutivo, $visitados)) {
+		return $hijos;
+	}
+	
+	$visitados[] = $id_ejecutivo;
+	
+	// Obtener hijos directos
+	$query = "SELECT id_eje FROM ejecutivo WHERE id_padre = $id_ejecutivo AND eli_eje = 1";
+	$hijosDirectos = ejecutarConsulta($query, $connection);
+	
+	if ($hijosDirectos) {
+		foreach ($hijosDirectos as $hijo) {
+			$hijos[] = $hijo['id_eje'];
+			// Recursivamente obtener hijos de este hijo
+			$nietosHijos = obtenerHijosRecursivos($hijo['id_eje'], $connection, $visitados);
+			$hijos = array_merge($hijos, $nietosHijos);
+		}
+	}
+	
+	return $hijos;
+}
+
+function obtenerEjecutivosPlanteles($id_ejecutivo, $connection) {
+	$ejecutivosPlanteles = [];
+	
+	// Obtener planteles asociados al ejecutivo
+	$queryPlanteles = "SELECT DISTINCT pe.id_pla 
+					   FROM planteles_ejecutivo pe 
+					   WHERE pe.id_eje = $id_ejecutivo";
+	
+	$plantelesAsociados = ejecutarConsulta($queryPlanteles, $connection);
+	
+	if ($plantelesAsociados) {
+		foreach ($plantelesAsociados as $plantel) {
+			$id_pla = $plantel['id_pla'];
+			
+			// Obtener todos los ejecutivos de este plantel
+			$queryEjecutivos = "SELECT id_eje FROM ejecutivo WHERE id_pla = $id_pla AND eli_eje = 1";
+			$ejecutivosPlantel = ejecutarConsulta($queryEjecutivos, $connection);
+			
+			if ($ejecutivosPlantel) {
+				foreach ($ejecutivosPlantel as $ejecutivo) {
+					$ejecutivosPlanteles[] = $ejecutivo['id_eje'];
+					
+					// También incluir el árbol de cada ejecutivo del plantel
+					$hijosEjecutivo = obtenerHijosRecursivos($ejecutivo['id_eje'], $connection);
+					$ejecutivosPlanteles = array_merge($ejecutivosPlanteles, $hijosEjecutivo);
+				}
+			}
+		}
+	}
+	
+	return $ejecutivosPlanteles;
 }
 ?>

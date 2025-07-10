@@ -47,6 +47,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 		break;
 
+		case 'obtener_ejecutivos_con_planteles':
+			// Obtener todos los ejecutivos con sus planteles asociados (permisos)
+			$query = "SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla as plantel_principal,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC";
+			
+			// Log para debugging
+			file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] Query ejecutivos con planteles: ' . $query . "\n", FILE_APPEND);
+			
+			$datos = ejecutarConsulta($query, $connection);
+
+			if($datos !== false) {
+				// Procesar los datos para estructurar mejor los planteles asociados
+				foreach($datos as &$ejecutivo) {
+					$ejecutivo['planteles_asociados_array'] = [];
+					if($ejecutivo['planteles_asociados']) {
+						$planteles = explode('|', $ejecutivo['planteles_asociados']);
+						foreach($planteles as $plantel) {
+							$partes = explode(':', $plantel);
+							if(count($partes) == 2) {
+								$ejecutivo['planteles_asociados_array'][] = [
+									'id_pla' => $partes[0],
+									'nom_pla' => $partes[1]
+								];
+							}
+						}
+					}
+				}
+				
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] Ejecutivos con planteles encontrados: ' . count($datos) . "\n", FILE_APPEND);
+				echo respuestaExito($datos, 'Ejecutivos con planteles obtenidos correctamente');
+			} else {
+				$error = mysqli_error($connection);
+				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] Error MySQL ejecutivos con planteles: ' . $error . "\n", FILE_APPEND);
+				echo respuestaError('Error al consultar ejecutivos con planteles: ' . $error . ' Query: ' . $query);
+			}
+		break;
+
 		case 'crear_ejecutivo':
 			$nom_eje = escape($_POST['nom_eje'], $connection);
 			$tel_eje = escape($_POST['tel_eje'], $connection);
@@ -363,10 +408,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		break;
 
 		case 'obtener_ejecutivos_por_plantel':
-			// Obtener ejecutivos agrupados por plantel con jerarquía
-			$query = "SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+			// Obtener ejecutivos agrupados por plantel con jerarquía y planteles asociados
+			$query = "SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
 					  FROM ejecutivo e 
 					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
 					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC";
 			
 			// Log para debugging
@@ -375,6 +426,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$datos = ejecutarConsulta($query, $connection);
 
 			if($datos !== false) {
+				// Procesar los datos para estructurar mejor los planteles asociados
+				foreach($datos as &$ejecutivo) {
+					$ejecutivo['planteles_asociados_array'] = [];
+					if($ejecutivo['planteles_asociados']) {
+						$planteles = explode('|', $ejecutivo['planteles_asociados']);
+						foreach($planteles as $plantel) {
+							$partes = explode(':', $plantel);
+							if(count($partes) == 2) {
+								$ejecutivo['planteles_asociados_array'][] = [
+									'id_pla' => $partes[0],
+									'nom_pla' => $partes[1]
+								];
+							}
+						}
+					}
+				}
+				
 				file_put_contents('debug_ejecutivos.log', '[' . date('Y-m-d H:i:s') . '] Ejecutivos por plantel encontrados: ' . count($datos) . "\n", FILE_APPEND);
 				echo respuestaExito($datos, 'Ejecutivos por plantel obtenidos correctamente');
 			} else {

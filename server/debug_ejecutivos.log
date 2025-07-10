@@ -1,0 +1,673 @@
+[2025-07-10 20:53:27] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 12
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-10 20:53:27] ==============================================
+[2025-07-10 20:53:27] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 20:53:27] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 12
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-10 20:53:27] Valores procesados:
+[2025-07-10 20:53:27] - ID Ejecutivo: 12
+[2025-07-10 20:53:27] - ID Padre: NULL
+[2025-07-10 20:53:27] - ID Plantel: 3
+[2025-07-10 20:53:27] ANTES - Ejecutivo: Diego Herrera Luna, Padre anterior: , Plantel anterior: 2
+[2025-07-10 20:53:27] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-10 20:53:27] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '3' WHERE id_eje = '12'
+[2025-07-10 20:53:27] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 3
+[2025-07-10 20:53:27] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 20:53:27] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 20:53:27] ==============================================
+[2025-07-10 20:53:27] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 20:53:27] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 20:53:27] Ejecutivos por plantel encontrados: 16
+[2025-07-10 20:53:51] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 20:53:51] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 20:53:51] Planteles encontrados: 3
+[2025-07-10 20:53:51] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 20:53:51] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 20:53:51] Ejecutivos por plantel encontrados: 16
+[2025-07-10 20:53:53] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 2
+)
+
+[2025-07-10 20:53:53] ==============================================
+[2025-07-10 20:53:53] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 20:53:53] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 2
+)
+
+[2025-07-10 20:53:53] Valores procesados:
+[2025-07-10 20:53:53] - ID Ejecutivo: 4
+[2025-07-10 20:53:53] - ID Padre: NULL
+[2025-07-10 20:53:53] - ID Plantel: 2
+[2025-07-10 20:53:53] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 3
+[2025-07-10 20:53:53] NUEVO PLANTEL: Plantel Naucalpan (ID: 2)
+[2025-07-10 20:53:53] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '2' WHERE id_eje = '4'
+[2025-07-10 20:53:53] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 2
+[2025-07-10 20:53:53] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 20:53:53] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 20:53:53] ==============================================
+[2025-07-10 20:53:53] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 20:53:53] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 20:53:53] Ejecutivos por plantel encontrados: 16
+[2025-07-10 20:53:55] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 20:53:55] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 20:53:55] Planteles encontrados: 3
+[2025-07-10 20:53:55] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 20:53:55] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 20:53:55] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:10] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:10] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:10] Planteles encontrados: 3
+[2025-07-10 21:01:10] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:10] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:10] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:13] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 2
+    [id_pla] => 2
+)
+
+[2025-07-10 21:01:13] ==============================================
+[2025-07-10 21:01:13] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 21:01:13] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 2
+    [id_pla] => 2
+)
+
+[2025-07-10 21:01:13] Valores procesados:
+[2025-07-10 21:01:13] - ID Ejecutivo: 4
+[2025-07-10 21:01:13] - ID Padre: 2
+[2025-07-10 21:01:13] - ID Plantel: 2
+[2025-07-10 21:01:13] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 2
+[2025-07-10 21:01:13] NUEVO PADRE: María Fernanda López (ID: 2)
+[2025-07-10 21:01:13] NUEVO PLANTEL: Plantel Naucalpan (ID: 2)
+[2025-07-10 21:01:13] QUERY MOVER: UPDATE ejecutivo SET id_padre = '2', id_pla = '2' WHERE id_eje = '4'
+[2025-07-10 21:01:13] VERIFICACIÓN - Nuevo padre: 2, Nuevo plantel: 2
+[2025-07-10 21:01:13] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 21:01:13] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 21:01:13] ==============================================
+[2025-07-10 21:01:13] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:13] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:13] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:15] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:15] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:15] Planteles encontrados: 3
+[2025-07-10 21:01:15] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:15] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:15] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:21] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:21] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:21] Planteles encontrados: 3
+[2025-07-10 21:01:21] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:21] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:21] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:24] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-10 21:01:24] ==============================================
+[2025-07-10 21:01:24] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 21:01:24] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-10 21:01:24] Valores procesados:
+[2025-07-10 21:01:24] - ID Ejecutivo: 4
+[2025-07-10 21:01:24] - ID Padre: NULL
+[2025-07-10 21:01:24] - ID Plantel: 3
+[2025-07-10 21:01:24] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: 2, Plantel anterior: 2
+[2025-07-10 21:01:24] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-10 21:01:24] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '3' WHERE id_eje = '4'
+[2025-07-10 21:01:24] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 3
+[2025-07-10 21:01:24] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 21:01:24] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 21:01:24] ==============================================
+[2025-07-10 21:01:24] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:24] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:24] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:25] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:25] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:25] Planteles encontrados: 3
+[2025-07-10 21:01:25] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:25] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:25] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:31] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:31] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:31] Planteles encontrados: 3
+[2025-07-10 21:01:31] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:31] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:31] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:36] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:36] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:36] Planteles encontrados: 3
+[2025-07-10 21:01:36] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:36] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:36] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:38] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-10 21:01:38] ==============================================
+[2025-07-10 21:01:38] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 21:01:38] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-10 21:01:38] Valores procesados:
+[2025-07-10 21:01:38] - ID Ejecutivo: 4
+[2025-07-10 21:01:38] - ID Padre: NULL
+[2025-07-10 21:01:38] - ID Plantel: 6
+[2025-07-10 21:01:38] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 3
+[2025-07-10 21:01:38] NUEVO PLANTEL: Plantel Cuautitlán (ID: 6)
+[2025-07-10 21:01:38] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '6' WHERE id_eje = '4'
+[2025-07-10 21:01:38] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 6
+[2025-07-10 21:01:38] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 21:01:38] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 21:01:38] ==============================================
+[2025-07-10 21:01:38] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:38] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:38] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:43] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 9
+    [id_pla] => 6
+)
+
+[2025-07-10 21:01:43] ==============================================
+[2025-07-10 21:01:43] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 21:01:43] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 9
+    [id_pla] => 6
+)
+
+[2025-07-10 21:01:43] Valores procesados:
+[2025-07-10 21:01:43] - ID Ejecutivo: 4
+[2025-07-10 21:01:43] - ID Padre: 9
+[2025-07-10 21:01:43] - ID Plantel: 6
+[2025-07-10 21:01:43] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 6
+[2025-07-10 21:01:43] NUEVO PADRE: Ana Garcia Silva (ID: 9)
+[2025-07-10 21:01:43] NUEVO PLANTEL: Plantel Cuautitlán (ID: 6)
+[2025-07-10 21:01:43] QUERY MOVER: UPDATE ejecutivo SET id_padre = '9', id_pla = '6' WHERE id_eje = '4'
+[2025-07-10 21:01:43] VERIFICACIÓN - Nuevo padre: 9, Nuevo plantel: 6
+[2025-07-10 21:01:43] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 21:01:43] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 21:01:43] ==============================================
+[2025-07-10 21:01:43] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:43] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:43] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:01:44] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:01:44] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:01:44] Planteles encontrados: 3
+[2025-07-10 21:01:44] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:01:44] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:01:44] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:03:32] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:03:32] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:03:32] Planteles encontrados: 3
+[2025-07-10 21:03:32] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:03:32] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, p.nom_pla 
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:03:32] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:26:12] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:26:12] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:26:12] Planteles encontrados: 3
+[2025-07-10 21:26:12] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:26:12] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:26:12] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:28:38] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_con_planteles
+)
+
+[2025-07-10 21:28:38] Query ejecutivos con planteles: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla as plantel_principal,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:28:38] Ejecutivos con planteles encontrados: 16
+[2025-07-10 21:34:05] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:34:05] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:34:05] Planteles encontrados: 3
+[2025-07-10 21:34:05] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:34:05] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:34:05] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:34:14] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:34:14] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:34:14] Planteles encontrados: 3
+[2025-07-10 21:34:14] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:34:14] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:34:14] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:34:18] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-10 21:34:18] ==============================================
+[2025-07-10 21:34:18] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 21:34:18] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 6
+)
+
+[2025-07-10 21:34:18] Valores procesados:
+[2025-07-10 21:34:18] - ID Ejecutivo: 4
+[2025-07-10 21:34:18] - ID Padre: NULL
+[2025-07-10 21:34:18] - ID Plantel: 6
+[2025-07-10 21:34:18] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: 9, Plantel anterior: 6
+[2025-07-10 21:34:18] NUEVO PLANTEL: Plantel Cuautitlán (ID: 6)
+[2025-07-10 21:34:18] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '6' WHERE id_eje = '4'
+[2025-07-10 21:34:18] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 6
+[2025-07-10 21:34:18] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 21:34:18] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 21:34:18] ==============================================
+[2025-07-10 21:34:18] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:34:18] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:34:18] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:34:19] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:34:19] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:34:19] Planteles encontrados: 3
+[2025-07-10 21:34:19] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:34:19] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:34:19] Ejecutivos por plantel encontrados: 16
+[2025-07-10 21:34:34] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 21:34:34] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 21:34:34] Planteles encontrados: 3
+[2025-07-10 21:34:34] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 21:34:34] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 21:34:34] Ejecutivos por plantel encontrados: 16
+[2025-07-10 22:05:10] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 22:05:10] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 22:05:10] Planteles encontrados: 3
+[2025-07-10 22:05:10] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 22:05:10] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 22:05:10] Ejecutivos por plantel encontrados: 16
+[2025-07-10 22:05:13] REQUEST recibido: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-10 22:05:13] ==============================================
+[2025-07-10 22:05:13] MOVER EJECUTIVO - REQUEST RECIBIDO
+[2025-07-10 22:05:13] POST data completo: Array
+(
+    [action] => mover_ejecutivo
+    [id_eje] => 4
+    [id_padre] => 
+    [id_pla] => 3
+)
+
+[2025-07-10 22:05:13] Valores procesados:
+[2025-07-10 22:05:13] - ID Ejecutivo: 4
+[2025-07-10 22:05:13] - ID Padre: NULL
+[2025-07-10 22:05:13] - ID Plantel: 3
+[2025-07-10 22:05:13] ANTES - Ejecutivo: Francisco Pineda, Padre anterior: , Plantel anterior: 6
+[2025-07-10 22:05:13] NUEVO PLANTEL: Plantel Ecatepec (ID: 3)
+[2025-07-10 22:05:13] QUERY MOVER: UPDATE ejecutivo SET id_padre = NULL, id_pla = '3' WHERE id_eje = '4'
+[2025-07-10 22:05:13] VERIFICACIÓN - Nuevo padre: , Nuevo plantel: 3
+[2025-07-10 22:05:13] EJECUTIVO MOVIDO EXITOSAMENTE
+[2025-07-10 22:05:13] RESPUESTA ENVIADA: SUCCESS
+[2025-07-10 22:05:13] ==============================================
+[2025-07-10 22:05:13] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 22:05:13] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 22:05:13] Ejecutivos por plantel encontrados: 16
+[2025-07-10 22:07:26] REQUEST recibido: Array
+(
+    [action] => obtener_planteles
+)
+
+[2025-07-10 22:07:26] Query planteles: SELECT id_pla, nom_pla, fec_pla FROM plantel ORDER BY nom_pla ASC
+[2025-07-10 22:07:26] Planteles encontrados: 3
+[2025-07-10 22:07:26] REQUEST recibido: Array
+(
+    [action] => obtener_ejecutivos_por_plantel
+)
+
+[2025-07-10 22:07:26] Query ejecutivos por plantel: SELECT e.id_eje, e.nom_eje, e.tel_eje, e.eli_eje, e.id_padre, e.id_pla, 
+					         p.nom_pla,
+					         GROUP_CONCAT(DISTINCT CONCAT(pa.id_pla, ':', pa.nom_pla) SEPARATOR '|') as planteles_asociados,
+					         COUNT(DISTINCT pe.id_pla) as total_planteles_asociados
+					  FROM ejecutivo e 
+					  LEFT JOIN plantel p ON e.id_pla = p.id_pla 
+					  LEFT JOIN planteles_ejecutivo pe ON e.id_eje = pe.id_eje
+					  LEFT JOIN plantel pa ON pe.id_pla = pa.id_pla
+					  GROUP BY e.id_eje
+					  ORDER BY e.id_pla, e.eli_eje DESC, e.nom_eje ASC
+[2025-07-10 22:07:26] Ejecutivos por plantel encontrados: 16

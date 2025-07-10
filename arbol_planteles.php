@@ -326,6 +326,30 @@
             font-size: 0.9em;
             color: #6c757d;
         }
+        
+        /* Mejorar las zonas de drop para incluir elementos internos */
+        .plantel-container.drop-zone * {
+            pointer-events: none; /* Evitar que los elementos internos interfieran con el drop */
+        }
+        
+        .plantel-container.drop-zone .plantel-tree {
+            pointer-events: all; /* Permitir drops en el área del árbol */
+        }
+        
+        .plantel-container.drop-zone .jstree-node {
+            pointer-events: all; /* Permitir drops en los nodos */
+        }
+        
+        .plantel-container.drop-zone .jstree-anchor {
+            pointer-events: all; /* Permitir drops en los enlaces de nodos */
+        }
+        
+        /* Estilo visual cuando el drop es válido */
+        .plantel-container.drop-zone .plantel-tree {
+            background-color: rgba(40, 167, 69, 0.1) !important;
+            border: 2px dashed #28a745 !important;
+            border-radius: 8px !important;
+        }
     </style>
 </head>
 <body>
@@ -634,7 +658,26 @@
                             'check_while_dragging': true,
                             'always_copy': false,
                             'drag_selection': false,
-                            'use_html5': true
+                            'use_html5': true,
+                            // Permitir drops externos en cualquier parte del árbol
+                            'check_callback': function(operation, node, parent, position, more) {
+                                // Permitir drops externos (entre planteles)
+                                if(operation === 'dnd_start' || operation === 'dnd_stop') {
+                                    return true;
+                                }
+                                
+                                // Para movimientos dentro del mismo árbol
+                                if(operation === 'move_node') {
+                                    return true;
+                                }
+                                
+                                // Para drops externos
+                                if(operation === 'copy_node' || operation === 'move_node') {
+                                    return true;
+                                }
+                                
+                                return true;
+                            }
                         },
                         'types': {
                             'default': {
@@ -723,6 +766,14 @@
                     '<span class="badge badge-success ml-1">Activo</span>' : 
                     '<span class="badge badge-danger ml-1">Inactivo</span>';
                 
+                // Generar emojis de planteles asociados
+                var plantelesEmojis = '';
+                if (ejecutivo.planteles_asociados_array && ejecutivo.planteles_asociados_array.length > 0) {
+                    // Crear un emoji 🕋 por cada plantel asociado
+                    plantelesEmojis = ' ' + '🕋'.repeat(ejecutivo.planteles_asociados_array.length);
+                    console.log('  - Planteles asociados:', ejecutivo.planteles_asociados_array.length, 'planteles');
+                }
+                
                 // Verificar si el padre existe en el mismo plantel
                 var parent = '#'; // Por defecto es raíz
                 if (ejecutivo.id_padre) {
@@ -739,7 +790,7 @@
                 
                 var nodo = {
                     'id': ejecutivo.id_eje,
-                    'text': ejecutivo.nom_eje + ' ' + badge,
+                    'text': ejecutivo.nom_eje + plantelesEmojis + ' ' + badge,
                     'icon': icono,
                     'parent': parent,
                     'data': ejecutivo,
@@ -808,8 +859,48 @@
                     e.stopPropagation();
                     
                     if(draggedNode && draggedFromPlantel && $(this).data('plantel-id') != draggedFromPlantel) {
+                        var targetPlantelId = $(this).data('plantel-id');
+                        var targetPlantel = planteles.find(p => p.id_pla == targetPlantelId);
+                        
+                        // Solo log la primera vez que entra a la zona
+                        if(!$(this).hasClass('drop-zone')) {
+                            console.log('🎯 PLANTEL DESTINO:', targetPlantel ? targetPlantel.nom_pla : 'Desconocido');
+                            
+                            // Resaltar visualmente el plantel destino
+                            $(this).addClass('plantel-destino-highlight');
+                        }
+                        
                         $(this).addClass('drop-zone');
                     }
+                });
+                
+                // También agregar eventos a los elementos internos del plantel (jsTree nodes)
+                $container.on('dragover.planteles dragenter.planteles', '.jstree-node, .jstree-anchor, .plantel-tree', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Propagar el evento al contenedor padre
+                    var container = $(this).closest('.plantel-container');
+                    if(draggedNode && draggedFromPlantel && container.data('plantel-id') != draggedFromPlantel) {
+                        var targetPlantelId = container.data('plantel-id');
+                        var targetPlantel = planteles.find(p => p.id_pla == targetPlantelId);
+                        
+                        if(!container.hasClass('drop-zone')) {
+                            console.log('🎯 PLANTEL DESTINO (sobre nodo):', targetPlantel ? targetPlantel.nom_pla : 'Desconocido');
+                            container.addClass('plantel-destino-highlight');
+                        }
+                        
+                        container.addClass('drop-zone');
+                    }
+                });
+                
+                $container.on('drop.planteles', '.jstree-node, .jstree-anchor, .plantel-tree', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Propagar el drop al contenedor padre
+                    var container = $(this).closest('.plantel-container');
+                    container.trigger('drop.planteles');
                 });
                 
                 $container.on('dragleave.planteles', function(e) {
@@ -821,7 +912,20 @@
                     var y = e.originalEvent.clientY;
                     
                     if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
-                        $(this).removeClass('drop-zone');
+                        $(this).removeClass('drop-zone plantel-destino-highlight');
+                    }
+                });
+                
+                // También manejar dragleave en elementos internos
+                $container.on('dragleave.planteles', '.jstree-node, .jstree-anchor, .plantel-tree', function(e) {
+                    // Solo actuar si salimos completamente del contenedor padre
+                    var container = $(this).closest('.plantel-container');
+                    var rect = container[0].getBoundingClientRect();
+                    var x = e.originalEvent.clientX;
+                    var y = e.originalEvent.clientY;
+                    
+                    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+                        container.removeClass('drop-zone plantel-destino-highlight');
                     }
                 });
                 
@@ -829,17 +933,18 @@
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    console.log('=== DROP EVENT EN PLANTEL ===');
-                    $(this).removeClass('drop-zone');
+                    console.log('📍 DROP EJECUTADO');
+                    $(this).removeClass('drop-zone plantel-destino-highlight');
                     
                     var targetPlantel = $(this).data('plantel-id');
-                    console.log('Drop en plantel:', targetPlantel);
-                    console.log('Variables disponibles:', {
-                        draggedNode: draggedNode,
-                        draggedFromPlantel: draggedFromPlantel,
-                        draggedExecutivo: draggedExecutivo,
-                        targetPlantel: targetPlantel
-                    });
+                    var plantelDestinoInfo = planteles.find(p => p.id_pla == targetPlantel);
+                    
+                    // LOG DEL PLANTEL DESTINO
+                    console.log('🎯 PLANTEL DESTINO:', plantelDestinoInfo ? plantelDestinoInfo.nom_pla : 'Desconocido');
+                    
+                    if(draggedExecutivo && plantelDestinoInfo) {
+                        console.log('👤 EJECUTIVO MOVIDO A:', plantelDestinoInfo.nom_pla);
+                    }
                     
                     if(draggedNode && draggedFromPlantel && targetPlantel != draggedFromPlantel) {
                         var ejecutivoId = draggedNode;
@@ -871,6 +976,55 @@
             });
             
             console.log('Drag & drop entre planteles configurado');
+            
+            // Configuración adicional usando delegación de eventos para mayor robustez
+            // Esto asegura que los drops funcionen en cualquier elemento hijo del contenedor
+            $(document).on('dragover.delegado dragenter.delegado', '.plantel-container', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if(draggedNode && draggedFromPlantel && $(this).data('plantel-id') != draggedFromPlantel) {
+                    var targetPlantelId = $(this).data('plantel-id');
+                    var targetPlantel = planteles.find(p => p.id_pla == targetPlantelId);
+                    
+                    if(!$(this).hasClass('drop-zone')) {
+                        console.log('🎯 PLANTEL DESTINO (delegado):', targetPlantel ? targetPlantel.nom_pla : 'Desconocido');
+                        $(this).addClass('plantel-destino-highlight');
+                    }
+                    $(this).addClass('drop-zone');
+                }
+            });
+            
+            $(document).on('drop.delegado', '.plantel-container', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Solo procesar si tenemos las variables necesarias
+                if(!draggedNode || !draggedFromPlantel) {
+                    return;
+                }
+                
+                var targetPlantel = $(this).data('plantel-id');
+                var plantelDestinoInfo = planteles.find(p => p.id_pla == targetPlantel);
+                
+                console.log('📍 DROP DELEGADO EN PLANTEL:', plantelDestinoInfo ? plantelDestinoInfo.nom_pla : 'Desconocido');
+                $(this).removeClass('drop-zone plantel-destino-highlight');
+                
+                if(targetPlantel && targetPlantel != draggedFromPlantel && draggedExecutivo) {
+                    console.log('👤 EJECUTIVO MOVIDO A (delegado):', plantelDestinoInfo.nom_pla);
+                    
+                    // Resetear variables antes de mover
+                    var tempEjecutivoId = draggedNode;
+                    var tempTargetPlantel = targetPlantel;
+                    
+                    draggedNode = null;
+                    draggedFromPlantel = null;
+                    draggedExecutivo = null;
+                    
+                    // Mover ejecutivo a nuevo plantel
+                    moverEjecutivo(tempEjecutivoId, null, tempTargetPlantel);
+                }
+            });
         }
         
         function moverEjecutivo(ejecutivoId, nuevoPadreId, nuevoPlantelId) {
